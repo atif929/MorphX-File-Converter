@@ -15,3 +15,19 @@ __pycache__/
 
 # Local Output Directory (optional, to keep your test files private)
 FileConverter_Output/
+
+# PyInstaller temporary build outputs
+build/
+main.spec
+converter.spec
+
+# Python temporary caches
+**/__pycache__/
+.pytest_cache/
+
+# Virtual Environment folder
+venv/
+.venv/
+
+# Local Compiled executables (We upload these to Releases, NOT code repository)
+dist/

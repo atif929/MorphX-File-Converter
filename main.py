@@ -5,6 +5,19 @@ from PyQt6.QtGui import QPalette, QColor, QIcon
 from app.config import APP_NAME
 from app.utils.file_utils import ensure_output_dir
 
+import os
+import sys
+
+def get_resource_path(relative_path):
+    """ This function finds your files whether running in VS Code or inside the .exe """
+    try:
+        # If the app is running inside the packed .exe, use this secret Windows path
+        base_path = sys._MEIPASS
+    except AttributeError:
+        # If you are just testing it normally in VS Code, use your normal folder path
+        base_path = os.path.abspath(".")
+        
+    return os.path.join(base_path, relative_path)
 
 def main():
     # ── 1. TASKBAR ICON FIX FOR WINDOWS ─────────────────────────────────────

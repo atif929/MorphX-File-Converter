@@ -13,6 +13,9 @@ from app.config import APP_NAME, APP_VERSION, CONVERSION_MAP, DEFAULT_OUTPUT_DIR
 from app.ui.drop_zone import DropZone
 from app.utils.file_utils import get_extension, open_folder
 
+# for icon
+from main import get_resource_path
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -71,9 +74,8 @@ class MainWindow(QMainWindow):
         logo_label = QLabel()
         logo_label.setObjectName("appLogo")
         
-        # Resolve the absolute path to your assets directory
-        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-        icon_path = os.path.join(base_dir, "assets", "icon.ico")
+        # ── FIX: Use the secret finder to get the safe path to your icon ──
+        icon_path = get_resource_path("assets/icon.ico")
         
         from PyQt6.QtGui import QPixmap
         if os.path.exists(icon_path):
@@ -84,7 +86,6 @@ class MainWindow(QMainWindow):
         else:
             # Fallback text placeholder if the asset path is broken temporarily
             logo_label.setText("📁")
-
         # 2. Rebuild the app title without the raw string emoji
         title = QLabel(APP_NAME)
         title.setObjectName("appTitle")
