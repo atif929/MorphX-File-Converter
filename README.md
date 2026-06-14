@@ -46,3 +46,11 @@ Follow these steps to clone, configure, and boot the application environment on 
 ```bash
 git clone [https://github.com/atif929/MorphX-File-Converter.git](https://github.com/atif929/MorphX-File-Converter.git)
 cd MorphX-File-Converter
+```
+---
+
+## ✍️ Author
+
+* **Atif** - *Initial Work & Architecture* - [@atif929](https://github.com/atif929)
+
+---
