@@ -1,0 +1,17 @@
+# Virtual Environment
+venv/
+.venv/
+ENV/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE Settings
+.vscode/
+.idea/
+
+# Local Output Directory (optional, to keep your test files private)
+FileConverter_Output/
