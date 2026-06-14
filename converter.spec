@@ -7,6 +7,7 @@ block_cipher = None
 added_files = [
     ('assets', 'assets'),
     ('app', 'app'),
+    ('poppler_bin', 'poppler_bin'),
 ]
 
 hidden_imports = [
