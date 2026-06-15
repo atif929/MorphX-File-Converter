@@ -1,0 +1,36 @@
+```gitignore
+# Virtual environment
+venv/
+.venv/
+ENV/
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE settings
+.vscode/
+.idea/
+
+# PyInstaller build outputs
+build/
+dist/
+*.spec.bak
+
+# Poppler binaries (bundled in .exe release only)
+poppler_bin/
+
+# comtypes generated cache
+comtypes/gen/
+
+# App output folder
+FileConverter_Output/
+MorphX_Output/
+
+# OS files
+Thumbs.db
+.DS_Store
+```
