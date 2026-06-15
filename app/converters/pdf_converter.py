@@ -1,7 +1,7 @@
 import os
+import sys
 from PIL import Image
 from pdf2image import convert_from_path
-from pdf2docx import Converter as DocxConverter
 from pptx import Presentation
 from pptx.util import Inches
 from app.config import POPPLER_PATH, DEFAULT_IMAGE_DPI, DEFAULT_IMAGE_QUALITY
@@ -9,8 +9,23 @@ from app.utils.file_utils import build_output_path, build_output_path_multi, ens
 
 
 def pdf_to_docx(input_path: str, output_path: str) -> str:
+    # First try Word COM (best quality, needs MS Word installed)
+    try:
+        import comtypes.client
+        word = comtypes.client.CreateObject("Word.Application")
+        word.Visible = False
+        doc = word.Documents.Open(os.path.abspath(input_path), ConfirmConversions=False)
+        doc.SaveAs(os.path.abspath(output_path), FileFormat=16)
+        doc.Close()
+        word.Quit()
+        return output_path
+    except Exception:
+        pass
+
+    # Fallback — pdf2docx (no Word needed)
+    from pdf2docx import Converter as DocxConverter
     cv = DocxConverter(input_path)
-    cv.convert(output_path, start=0, end=None)
+    cv.convert(output_path, start=0, end=None, multi_processing=False)
     cv.close()
     return output_path
 

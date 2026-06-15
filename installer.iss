@@ -1,30 +1,30 @@
 [Setup]
-AppName=FileConverter
+AppName=MorphX
 AppVersion=1.0.0
 AppPublisher=Atif
-DefaultDirName={autopf}\FileConverter
-DefaultGroupName=FileConverter
+DefaultDirName={autopf}\MorphX
+DefaultGroupName=MorphX
 OutputDir=installer_output
-OutputBaseFilename=FileConverter_Setup_v1.0.0
+OutputBaseFilename=MorphX_Setup_v1.0.0
 SetupIconFile=assets\icon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-PrivilegesRequired=admin
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
-Name: "desktopicon"; Description: "Create a desktop shortcut"; GroupDescription: "Additional icons:"; Flags: unchecked
+Name: "desktopicon"; Description: "Create Desktop Shortcut"; Flags: checkedonce
+Name: "startmenu"; Description: "Add to Start Menu"; Flags: checkedonce
 
 [Files]
-Source: "dist\FileConverter\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "dist\MorphX\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-Name: "{group}\FileConverter"; Filename: "{app}\FileConverter.exe"
-Name: "{group}\Uninstall FileConverter"; Filename: "{uninstallexe}"
-Name: "{commondesktop}\FileConverter"; Filename: "{app}\FileConverter.exe"; Tasks: desktopicon
+Name: "{group}\MorphX"; Filename: "{app}\MorphX.exe"
+Name: "{commondesktop}\MorphX"; Filename: "{app}\MorphX.exe"; Tasks: desktopicon
+Name: "{commonstartmenu}\MorphX"; Filename: "{app}\MorphX.exe"; Tasks: startmenu
 
 [Run]
-Filename: "{app}\FileConverter.exe"; Description: "Launch FileConverter"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\MorphX.exe"; Description: "Launch MorphX"; Flags: nowait postinstall skipifsilent

@@ -1,60 +1,54 @@
-import sys
 import os
+import sys
+import multiprocessing
+
+if getattr(sys, 'frozen', False):
+    os.environ['COMTYPES_CACHE_DIR'] = os.path.join(
+        os.path.expanduser("~"), "AppData", "Local", "MorphX", "comtypes_cache"
+    )
+    os.makedirs(os.environ['COMTYPES_CACHE_DIR'], exist_ok=True)
+
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QPalette, QColor, QIcon
 from app.config import APP_NAME
 from app.utils.file_utils import ensure_output_dir
 
-import os
-import sys
 
 def get_resource_path(relative_path):
-    """ This function finds your files whether running in VS Code or inside the .exe """
     try:
-        # If the app is running inside the packed .exe, use this secret Windows path
         base_path = sys._MEIPASS
     except AttributeError:
-        # If you are just testing it normally in VS Code, use your normal folder path
         base_path = os.path.abspath(".")
-        
     return os.path.join(base_path, relative_path)
 
+
 def main():
-    # ── 1. TASKBAR ICON FIX FOR WINDOWS ─────────────────────────────────────
-    # Tell Windows to treat this process as a unique standalone application
-    # This MUST run before the QApplication is initialized!
     if sys.platform == "win32":
         import ctypes
         myappid = "mycompany.morphx.converter.1.0"
         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
-    # ────────────────────────────────────────────────────────────────────────
 
-    # 2. Ensure internal folders exist
     ensure_output_dir()
 
-    # 3. Initialize the application object
     app = QApplication(sys.argv)
     app.setApplicationName(APP_NAME)
     app.setStyle("Fusion")
 
-    # 4. Set light-theme window palette background properties
     palette = QPalette()
     palette.setColor(QPalette.ColorRole.Window, QColor(240, 244, 255))
     app.setPalette(palette)
 
-    # 5. Load your custom icon asset
-    icon_path = os.path.join(os.path.dirname(__file__), "assets", "icon.ico")
+    icon_path = get_resource_path(os.path.join("assets", "icon.ico"))
     if os.path.exists(icon_path):
         app.setWindowIcon(QIcon(icon_path))
 
-    # 6. Load and show the window
     from app.ui.main_window import MainWindow
     window = MainWindow()
     window.show()
 
-    # 7. Start the main event loop cleanly
     sys.exit(app.exec())
 
 
 if __name__ == "__main__":
+    multiprocessing.freeze_support()
     main()

@@ -1,26 +1,15 @@
-<<<<<<< HEAD
-```gitignore
 # Virtual environment
-=======
-# Virtual Environment
->>>>>>> d26ac61649f2aceacca66d74e9b1b5fe3600d0f0
 venv/
 .venv/
 ENV/
 
-<<<<<<< HEAD
 # Python cache
 __pycache__/
 **/__pycache__/
-=======
-# Python Cache
-__pycache__/
->>>>>>> d26ac61649f2aceacca66d74e9b1b5fe3600d0f0
 *.pyc
 *.pyo
 *.pyd
 
-<<<<<<< HEAD
 # IDE settings
 .vscode/
 .idea/
@@ -29,6 +18,7 @@ __pycache__/
 build/
 dist/
 *.spec.bak
+main.spec
 
 # Poppler binaries (bundled in .exe release only)
 poppler_bin/
@@ -40,31 +30,12 @@ comtypes/gen/
 FileConverter_Output/
 MorphX_Output/
 
+# Installer output
+installer_output/
+
 # OS files
 Thumbs.db
 .DS_Store
-```
-=======
-# IDE Settings
-.vscode/
-.idea/
 
-# Local Output Directory (optional, to keep your test files private)
-FileConverter_Output/
-
-# PyInstaller temporary build outputs
-build/
-main.spec
-converter.spec
-
-# Python temporary caches
-**/__pycache__/
+# pytest
 .pytest_cache/
-
-# Virtual Environment folder
-venv/
-.venv/
-
-# Local Compiled executables (We upload these to Releases, NOT code repository)
-dist/
->>>>>>> d26ac61649f2aceacca66d74e9b1b5fe3600d0f0
