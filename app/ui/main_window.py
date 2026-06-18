@@ -90,7 +90,7 @@ class MainWindow(QMainWindow):
         title = QLabel(APP_NAME)
         title.setObjectName("appTitle")
         
-        subtitle = QLabel("Convert PDF · DOCX · PPTX · JPG · PNG · JPEG")
+        subtitle = QLabel("Convert PDF · DOCX · PPTX · PPT · JPG · PNG · JPEG")
         subtitle.setObjectName("appSubtitle")
 
         # Assemble the new components layout cleanly

@@ -25,71 +25,71 @@ def convert(input_path: str, target_format: str, output_dir: str) -> list[str]:
     if tgt_fmt not in CONVERSION_MAP.get(src_fmt, []):
         raise ValueError(f"Conversion from {src_fmt} to {tgt_fmt} is not supported.")
 
-    # ── PDF source ────────────────────────────────────────────────────────────
     if src_fmt == "PDF":
         if tgt_fmt == "DOCX":
             from app.converters.pdf_converter import pdf_to_docx
             out = build_output_path(input_path, tgt_fmt, output_dir)
             return [pdf_to_docx(input_path, out)]
-
         elif tgt_fmt == "PPTX":
             from app.converters.pdf_converter import pdf_to_pptx
             out = build_output_path(input_path, tgt_fmt, output_dir)
             return [pdf_to_pptx(input_path, out)]
-
         elif tgt_fmt in ("JPG", "PNG", "JPEG"):
             from app.converters.pdf_converter import pdf_to_images
             return pdf_to_images(input_path, output_dir, tgt_fmt)
 
-    # ── DOCX source ───────────────────────────────────────────────────────────
     elif src_fmt == "DOCX":
         if tgt_fmt == "PDF":
             from app.converters.office_converter import docx_to_pdf
             out = build_output_path(input_path, tgt_fmt, output_dir)
             return [docx_to_pdf(input_path, out)]
-
         elif tgt_fmt == "PPTX":
             from app.converters.office_converter import docx_to_pptx
             out = build_output_path(input_path, tgt_fmt, output_dir)
             return [docx_to_pptx(input_path, out)]
-
         elif tgt_fmt in ("JPG", "PNG", "JPEG"):
             from app.converters.office_converter import docx_to_images
             return docx_to_images(input_path, output_dir, tgt_fmt)
 
-    # ── PPTX source ───────────────────────────────────────────────────────────
     elif src_fmt == "PPTX":
         if tgt_fmt == "PDF":
             from app.converters.office_converter import pptx_to_pdf
             out = build_output_path(input_path, tgt_fmt, output_dir)
             return [pptx_to_pdf(input_path, out)]
-
         elif tgt_fmt == "DOCX":
             from app.converters.office_converter import pptx_to_docx
             out = build_output_path(input_path, tgt_fmt, output_dir)
             return [pptx_to_docx(input_path, out)]
-
         elif tgt_fmt in ("JPG", "PNG", "JPEG"):
             from app.converters.office_converter import pptx_to_images
             return pptx_to_images(input_path, output_dir, tgt_fmt)
 
-    # ── Image source ──────────────────────────────────────────────────────────
+    elif src_fmt == "PPT":
+        if tgt_fmt == "PDF":
+            from app.converters.office_converter import ppt_to_pdf
+            out = build_output_path(input_path, tgt_fmt, output_dir)
+            return [ppt_to_pdf(input_path, out)]
+        elif tgt_fmt == "DOCX":
+            from app.converters.office_converter import ppt_to_docx
+            out = build_output_path(input_path, tgt_fmt, output_dir)
+            return [ppt_to_docx(input_path, out)]
+        elif tgt_fmt in ("JPG", "PNG", "JPEG"):
+            from app.converters.office_converter import ppt_to_images
+            return ppt_to_images(input_path, output_dir, tgt_fmt)
+
     elif src_fmt in ("JPG", "PNG", "JPEG"):
         if tgt_fmt == "PDF":
             from app.converters.image_converter import image_to_pdf
             out = build_output_path(input_path, tgt_fmt, output_dir)
             return [image_to_pdf(input_path, out)]
-
         elif tgt_fmt == "PPTX":
             from app.converters.image_converter import image_to_pptx
             out = build_output_path(input_path, tgt_fmt, output_dir)
             return [image_to_pptx(input_path, out)]
-
         elif tgt_fmt == "DOCX":
             from app.converters.image_converter import image_to_docx
             out = build_output_path(input_path, tgt_fmt, output_dir)
             return [image_to_docx(input_path, out)]
-
         elif tgt_fmt in ("JPG", "PNG", "JPEG"):
             from app.converters.image_converter import image_to_image
             out = build_output_path(input_path, tgt_fmt, output_dir)
