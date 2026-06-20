@@ -1,11 +1,11 @@
 [Setup]
 AppName=MorphX
-AppVersion=1.0.0
+AppVersion=1.1.0
 AppPublisher=Atif
 DefaultDirName={autopf}\MorphX
 DefaultGroupName=MorphX
 OutputDir=installer_output
-OutputBaseFilename=MorphX_Setup_v1.0.0
+OutputBaseFilename = MorphX_Setup_v1.1.0
 SetupIconFile=assets\icon.ico
 Compression=lzma
 SolidCompression=yes

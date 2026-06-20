@@ -13,31 +13,34 @@ class DropZone(QLabel):
         self.setAcceptDrops(True)
         self.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-        self.setMinimumHeight(180)
+        self.setMinimumHeight(140)
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self._set_idle_style()
-        self.setText("☁️\n\nClick or drag your files here to convert")
 
     def _set_idle_style(self):
+        self.setText("Drop files here\n\nor click to browse")
         self.setStyleSheet("""
             QLabel {
-                border: 2px dashed rgba(58, 91, 217, 0.4);
-                border-radius: 14px;
-                background-color: rgba(255, 255, 255, 0.45);
-                color: #8899bb;
-                font-size: 14px;
+                border: 1.5px dashed #3A3D41;
+                border-radius: 8px;
+                background-color: #252526;
+                color: #A9B1BA;
+                font-size: 13px;
+                font-family: "Segoe UI";
                 padding: 20px;
             }
         """)
 
     def _set_hover_style(self):
+        self.setText("Release to add files")
         self.setStyleSheet("""
             QLabel {
-                border: 2px dashed #3a5bd9;
-                border-radius: 14px;
-                background-color: rgba(58, 91, 217, 0.08);
-                color: #3a5bd9;
-                font-size: 14px;
+                border: 1.5px dashed #4F8CFF;
+                border-radius: 8px;
+                background-color: #1a2a3a;
+                color: #4F8CFF;
+                font-size: 13px;
+                font-family: "Segoe UI";
                 font-weight: 600;
                 padding: 20px;
             }
@@ -70,9 +73,7 @@ class DropZone(QLabel):
             from PyQt6.QtWidgets import QFileDialog
             exts = " ".join(f"*.{f.lower()}" for f in SUPPORTED_FORMATS)
             files, _ = QFileDialog.getOpenFileNames(
-                self,
-                "Select Files",
-                "",
+                self, "Select Files", "",
                 f"Supported Files ({exts});;All Files (*)"
             )
             if files:
